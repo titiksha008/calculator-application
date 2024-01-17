@@ -1,0 +1,35 @@
+body{
+    padding: 0;
+    margin: 0;
+    background-color:white;
+}
+button{    
+    background-color: #18FA83;
+    border: none;
+    position: absolute;
+    margin-right: 1700px;
+    
+    top: 30%;
+    left: 10%;
+    padding: 19px 40px;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 10px;
+    width: 400px;
+    transition-duration: 0.3s;
+}
+h1{
+    font-size: xx-large;
+    
+    color:whitesmoke;
+    padding: 20px 40px;
+    font-family: cursive;
+}
+
+#backgif{
+    transform: translateX(500px);
+}
+#button1:hover{
+    transform: scale3d(1.1,1.1,1.1);
+    transition-duration: 0.3s;
+}
