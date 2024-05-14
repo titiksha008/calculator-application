@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Modern Calculator</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #292929;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      overflow: hidden;
+    }
+
+    #calculator {
+      background-color: #7f7c7c;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(248, 248, 248, 0.1);
+      overflow: hidden;
+      width: 300px;
+    }
+
+    #result {
+      padding: 15px;
+      text-align: right;
+      font-size: 24px;
+      border-bottom: 1px solid #ccc;
+    }
+
+    #buttons {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+    }
+
+    button {
+      border: none;
+      outline: none;
+      font-size: 18px;
+      padding: 15px;
+      cursor: pointer;
+      transition-duration: 0.3s;
+    }
+    button:hover{
+      transform: scale3d(0.9,0.9,0.9);
+      transition-duration: 0.3s;
+      
+    }
+
+    button.operator {
+      background-color: #9c9c9c;
+    }
+
+    button.double {
+      grid-column: span 2;
+    }
+
+    button.clear {
+      background-color: #ff6666;
+      color: #767676;
+    }
+
+    button.equals {
+      background-color: #668b9d;
+      color: #ffc9c9;
+    }
+    a{
+      color: rgb(0, 0, 0);
+      text-decoration: none;
+      background-color: rgba(0, 0, 0, 0.531);
+      padding: 5px;
+      margin-right: auto;
+      margin-left: auto;
+      border-radius: 5px;
+      transition-duration: 0.3s;
+    }
+    a:hover{
+      transform: scale3d(1.1,1.1,1.1);
+      transition-duration: 0.3s;
+
+    }
+    @keyframes anim1{
+      0%{
+        transform: translateX(1000px);
+      }
+      50%{
+        transform: translateX(500px);
+      }
+      100%{
+        transform: translateX(0px);
+      }
+    }
+    @keyframes anim2{
+      100%{
+        transform: translateX(1000px);
+      }
+      50%{
+        transform: translateX(500px);
+      }
+      0%{
+        transform: translateX(0px);
+      }
+    }
+    #links{
+      background-color: #dddd87;
+      height:180px;
+      border-radius: 10px;
+      margin-left: 20px;
+      display: none;
+      transform: translateX(2000px);
+    }
+    #sub{
+      display: flex;
+      
+    }
+    #help{
+      color: #000000;
+      border-radius: 10px;
+      margin-left: 20px;
+      background-color: rgb(182, 255, 73);
+    }
+    #main{
+      display: flex;
+      flex-direction: column;
+    }
+    
+    
+
+  </style>
+</head>
+</H1>
+<body background="E:\FEE project\g1.jpg" >
+  
+    <div id="calculator">
+    <div id="result">0</div>
+    <div id="buttons">
+      <button>7</button>
+      <button>8</button>
+      <button>9</button>
+      <button class="operator">/</button>
+      <button>4</button>
+      <button>5</button>
+      <button>6</button>
+      <button class="operator">*</button>
+      <button>1</button>
+      <button>2</button>
+      <button>3</button>
+      <button class="operator">-</button>
+      <button class="double">0</button>
+      <button>.</button>
+      <button class="operator">+</button>
+      <button class="double equals">=</button>
+      <button class="clear" onclick="clearResult()">C</button>
+    </div>
+  </div>
+  <div id="main">
+    <button id="help" onclick="help()"><b>PRESS HERE FOR HELP</b></button>
+    <div id="links">
+      <h3 id="top">CLICK ON THESE LINKS FOR HELP</h3>
+      <hr>
+      <div id="sub">
+        <a href="https://byjus.com/"><b>BYJU'S</b></a>
+        <a href="https://www.toppr.com/"><B>TOPPER</B></a>
+      </div>
+    </div>
+  </div>
+  <script>
+    var h=0;
+    function help(){
+      h+=1
+      if(h%2!=0){
+        document.getElementById('links').style.display='block';
+        document.getElementById('links').style.animationName='anim1'
+        document.getElementById('links').style.animationDuration='1s'
+        document.getElementById('links').style.transform='translateX(0px)'
+        }
+      if(h%2==0){
+        
+        document.getElementById('links').style.animationName='anim2'
+        document.getElementById('links').style.animationDuration='1s'
+        document.getElementById('links').style.transform='rotateX(90deg)'
+        
+      }
+    }
+
+    let result = document.getElementById("result");
+    let buttons = document.getElementById("buttons");
+
+    buttons.addEventListener("click", function (event) {
+      if (event.target.tagName === "BUTTON") {
+        handleButtonClick(event.target.textContent);
+      }
+    });
+
+    function handleButtonClick(value) {
+      if (value === "=") {
+        calculateResult();
+      } else if (value === "C") {
+        clearResult();
+      } else {
+        updateResult(value);
+      }
+    }
+
+    function updateResult(value) {
+      if (result.textContent === "0" || result.textContent === "Error") {
+        result.textContent = value;
+      } else {
+        result.textContent += value;
+      }
+    }
+
+    function calculateResult() {
+      try {
+        result.textContent = eval(result.textContent);
+      } catch (error) {
+        result.textContent = "Error";
+      }
+    }
+
+    function clearResult() {
+      result.textContent = "0";
+    }
+  </script>
+</body>
+</html>
